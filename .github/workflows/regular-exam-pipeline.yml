@@ -1,0 +1,28 @@
+name: Regular Exam Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-unit-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install NPM Dependencies
+      run: npm install
+    - name: Execute Unit Tests
+      run: npm run test:unit
+    - name: Display SoftUnu Username
+      run: echo "M.Chipilov"
+    
